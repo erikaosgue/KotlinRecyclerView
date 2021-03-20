@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
 
         //Pass the adapter into the recycleView
 //      recyclerView.adapter = adapter
-        
+
         initRecyclerView()
         addDateSet()
 
@@ -44,7 +44,13 @@ class MainActivity : AppCompatActivity() {
     private fun initRecyclerView(){
         val recyclerView = activityMainBinding.recyclerViewId
         recyclerView.apply {
+            //giving the LinearLayoutManager to the recyclerView
             layoutManager = LinearLayoutManager(this@MainActivity)
+
+            //Define a padding to the Items in the recyclerView
+            val topSpacingItemDecoration = TopSpacingItemDecoration(30)
+            addItemDecoration(topSpacingItemDecoration)
+
             //Create the adapter
             blogAdapter = MyClassAdapter()
             adapter = blogAdapter
