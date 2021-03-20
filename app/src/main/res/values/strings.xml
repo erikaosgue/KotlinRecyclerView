@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">KotlinRecyclerView</string>
+    <string name="the_title_of_a_blog">The Title of a Blog</string>
+    <string name="mitch_tabian">Mitch Tabian</string>
+</resources>
