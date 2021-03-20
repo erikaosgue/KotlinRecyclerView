@@ -13,9 +13,9 @@ import com.erikaosgue.kotlinrecyclerview.R
 import com.erikaosgue.kotlinrecyclerview.models.BlogPost
 import java.util.zip.Inflater
 
-class MyClassAdapter(val myListData: ArrayList<BlogPost>): RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+class MyClassAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
-    private var items: List<BlogPost> = ArrayList<BlogPost>()
+    private var listBlogPost: List<BlogPost> = ArrayList<BlogPost>()
     class MyViewHolder (val myViewLayout: View): RecyclerView.ViewHolder(myViewLayout) {
         fun render(blogPost: BlogPost) {
 
@@ -34,6 +34,7 @@ class MyClassAdapter(val myListData: ArrayList<BlogPost>): RecyclerView.Adapter<
                 .error(R.drawable.ic_launcher_background)
 
             Glide.with(myViewLayout.context)
+                .applyDefaultRequestOptions(requestOptions)
                 .load(blogPost.image)
                 .into(blogImage)
 
@@ -51,16 +52,16 @@ class MyClassAdapter(val myListData: ArrayList<BlogPost>): RecyclerView.Adapter<
         // To use with different types of ViewHolders
         when(myHolder){
             is MyViewHolder -> {
-                myHolder.render(myListData[position])
+                myHolder.render(listBlogPost[position])
             }
         }
     }
 
     override fun getItemCount(): Int {
-        return myListData.size
+        return listBlogPost.size
     }
 
-    fun sumbmitList(blogList: List<BlogPost>){
-        items = blogList
+    fun submitList(blogList: List<BlogPost>){
+        listBlogPost = blogList
     }
 }

@@ -3,11 +3,13 @@ package com.erikaosgue.kotlinrecyclerview
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.erikaosgue.kotlinrecyclerview.data.MyClassAdapter
 import com.erikaosgue.kotlinrecyclerview.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var blogAdapter: MyClassAdapter
+
     lateinit var  activityMainBinding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -15,27 +17,41 @@ class MainActivity : AppCompatActivity() {
         setContentView(activityMainBinding.root)
 
         // Get the recyclerView from the activity_main
-        val recyclerView = activityMainBinding.recyclerViewId
+        //var recyclerView = activityMainBinding.recyclerViewId
 
         //Add an instance of LinearLayout
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        //recyclerView.layoutManager = LinearLayoutManager(this)
 
         // Add the data into the DataSource
-        val listOfData = DataSource()
-
+//        val listOfData = DataSource()
 
         //Create the adapter
-        val adapter = MyClassAdapter(listOfData)
+        //val blogAdapter = MyClassAdapter()
+
 
         //Pass the adapter into the recycleView
-        recyclerView.adapter = adapter
+//      recyclerView.adapter = adapter
+        
+        initRecyclerView()
+        addDateSet()
 
-        private fun initRecyclerView(){
-            recyclerView.apply {
+    }
+    private fun addDateSet(){
+         val data = DataSource.createDataSet()
+        blogAdapter.submitList(data)
+    }
 
-            }
+    private fun initRecyclerView(){
+        val recyclerView = activityMainBinding.recyclerViewId
+        recyclerView.apply {
+            layoutManager = LinearLayoutManager(this@MainActivity)
+            //Create the adapter
+            blogAdapter = MyClassAdapter()
+            adapter = blogAdapter
 
-        }        }
+        }
+
+    }
 
 
 }
